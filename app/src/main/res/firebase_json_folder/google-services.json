@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756307443646",
+    "project_id": "art-story-c9376",
+    "storage_bucket": "art-story-c9376.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756307443646:android:9914107c73778e8cc983ef",
+        "android_client_info": {
+          "package_name": "com.test.art_story"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnPTTy5LapTUFUVRgqdFg8vru2nO6vF0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
