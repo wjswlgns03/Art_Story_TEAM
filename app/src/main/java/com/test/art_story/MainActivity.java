@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    // test 2 git
+    // test 3 git
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
