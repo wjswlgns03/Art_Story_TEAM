@@ -1,0 +1,220 @@
+Index: app/src/main/java/com/test/art_story/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.test.art_story;\r\n\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.view.Menu;\r\n\r\nimport com.google.android.material.floatingactionbutton.FloatingActionButton;\r\nimport com.google.android.material.snackbar.Snackbar;\r\nimport com.google.android.material.navigation.NavigationView;\r\n\r\nimport androidx.navigation.NavController;\r\nimport androidx.navigation.Navigation;\r\nimport androidx.navigation.ui.AppBarConfiguration;\r\nimport androidx.navigation.ui.NavigationUI;\r\nimport androidx.drawerlayout.widget.DrawerLayout;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.appcompat.widget.Toolbar;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n\r\n    private AppBarConfiguration mAppBarConfiguration;\r\n\r\n    // test 3 git\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n        Toolbar toolbar = findViewById(R.id.toolbar);\r\n        setSupportActionBar(toolbar);\r\n        FloatingActionButton fab = findViewById(R.id.fab);\r\n        fab.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View view) {\r\n                Snackbar.make(view, \"Replace with your own action\", Snackbar.LENGTH_LONG)\r\n                        .setAction(\"Action\", null).show();\r\n            }\r\n        });\r\n        DrawerLayout drawer = findViewById(R.id.drawer_layout);\r\n        NavigationView navigationView = findViewById(R.id.nav_view);\r\n        // Passing each menu ID as a set of Ids because each\r\n        // menu should be considered as top level destinations.\r\n        mAppBarConfiguration = new AppBarConfiguration.Builder(\r\n                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)\r\n                .setDrawerLayout(drawer)\r\n                .build();\r\n        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);\r\n        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);\r\n        NavigationUI.setupWithNavController(navigationView, navController);\r\n    }\r\n\r\n    @Override\r\n    public boolean onCreateOptionsMenu(Menu menu) {\r\n        // Inflate the menu; this adds items to the action bar if it is present.\r\n        getMenuInflater().inflate(R.menu.main, menu);\r\n        return true;\r\n    }\r\n\r\n    @Override\r\n    public boolean onSupportNavigateUp() {\r\n        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);\r\n        return NavigationUI.navigateUp(navController, mAppBarConfiguration)\r\n                || super.onSupportNavigateUp();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/test/art_story/MainActivity.java	(revision 938651a63c36ba91619773152231b37bf107068d)
++++ app/src/main/java/com/test/art_story/MainActivity.java	(date 1700275231162)
+@@ -3,10 +3,17 @@
+ import android.os.Bundle;
+ import android.view.View;
+ import android.view.Menu;
+-
+ import com.google.android.material.floatingactionbutton.FloatingActionButton;
+ import com.google.android.material.snackbar.Snackbar;
+ import com.google.android.material.navigation.NavigationView;
++import android.graphics.Color;
++import android.graphics.Typeface;
++import android.text.Spannable;
++import android.text.SpannableString;
++import android.text.style.ForegroundColorSpan;
++import android.text.style.RelativeSizeSpan;
++import android.text.style.StyleSpan;
++import android.widget.TextView;
+ 
+ import androidx.navigation.NavController;
+ import androidx.navigation.Navigation;
+@@ -26,6 +33,21 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
++
++        TextView art_story = findViewById(R.id.art_story); // 수정된 ID 사용
++        CharSequence content = art_story.getText();
++        SpannableString spannableString = new SpannableString(content);
++
++        String word = "STORY";
++        int start = content.toString().indexOf(word);
++        int end = start + word.length();
++
++        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
++        spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
++        spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
++
++        art_story.setText(spannableString);
++
+         Toolbar toolbar = findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+         FloatingActionButton fab = findViewById(R.id.fab);
+@@ -62,4 +84,6 @@
+         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                 || super.onSupportNavigateUp();
+     }
+-}
+\ No newline at end of file
++
++}
++
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Base application theme. -->\r\n    <style name=\"AppTheme\" parent=\"Theme.AppCompat.Light.DarkActionBar\">\r\n        <!-- Customize your theme here. -->\r\n        <item name=\"colorPrimary\">@color/colorPrimary</item>\r\n        <item name=\"colorPrimaryDark\">@color/colorPrimaryDark</item>\r\n        <item name=\"colorAccent\">@color/colorAccent</item>\r\n    </style>\r\n\r\n    <style name=\"AppTheme.NoActionBar\">\r\n        <item name=\"windowActionBar\">false</item>\r\n        <item name=\"windowNoTitle\">true</item>\r\n    </style>\r\n\r\n    <style name=\"AppTheme.AppBarOverlay\" parent=\"ThemeOverlay.AppCompat.Dark.ActionBar\" />\r\n\r\n    <style name=\"AppTheme.PopupOverlay\" parent=\"ThemeOverlay.AppCompat.Light\" />\r\n\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision 938651a63c36ba91619773152231b37bf107068d)
++++ app/src/main/res/values/styles.xml	(date 1700272233740)
+@@ -12,6 +12,12 @@
+         <item name="windowNoTitle">true</item>
+     </style>
+ 
++    <style name="ArtStoryStyle">
++        <item name="android:textSize">50sp</item>
++        <item name="android:textColor">#DEC1EC</item>
++        <item name="android:fontFamily">@font/gmarketsans</item>
++    </style>
++
+     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+ 
+     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+Index: app/src/main/res/layout/login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/titleTextView\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentTop=\"true\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_marginTop=\"32dp\"\r\n        android:layout_marginEnd=\"127dp\"\r\n        android:text=\"ART STORY\"\r\n        android:textSize=\"30sp\"\r\n        android:textStyle=\"bold\" />\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"298dp\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_marginBottom=\"349dp\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <ImageView\r\n            android:id=\"@+id/imageView4\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"317dp\"\r\n            app:srcCompat=\"@drawable/__removebg_preview\" />\r\n    </LinearLayout>\r\n\r\n    <Button\r\n        android:id=\"@+id/no_login_btn\"\r\n        android:layout_width=\"282dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_marginStart=\"72dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"57dp\"\r\n        android:layout_marginBottom=\"210dp\"\r\n        android:backgroundTint=\"@color/colorPrimary\"\r\n        android:text=\"로그인하지 않고 진행하기\"\r\n        android:textColor=\"#FFFFFF\"\r\n        android:textStyle=\"bold\"\r\n        tools:ignore=\"NotSibling,UnknownId\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/em_login_btn\"\r\n        android:layout_width=\"170dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_alignParentStart=\"true\"\r\n        android:layout_alignParentEnd=\"true\"\r\n        android:layout_alignParentBottom=\"true\"\r\n        android:layout_marginStart=\"72dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"57dp\"\r\n        android:layout_marginBottom=\"130dp\"\r\n        android:backgroundTint=\"@color/colorPrimary\"\r\n        android:text=\"이메일로 로그인하기\"\r\n        android:textColor=\"#FFFFFF\"\r\n        android:textStyle=\"bold\"\r\n        tools:ignore=\"NotSibling,UnknownId\" />\r\n\r\n</RelativeLayout>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/login.xml	(revision 938651a63c36ba91619773152231b37bf107068d)
++++ app/src/main/res/layout/login.xml	(date 1700277136396)
+@@ -6,29 +6,55 @@
+     android:layout_height="match_parent">
+ 
+     <TextView
+-        android:id="@+id/titleTextView"
+-        android:layout_width="wrap_content"
++        android:id="@+id/art_story"
++        android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+-        android:layout_alignParentTop="true"
++        android:layout_gravity="center"
++        android:layout_marginBottom="109dp"
++        android:fontFamily="@font/gmarketsans"
++        android:gravity="center_horizontal|top"
++        android:text="\nART\nSTORY"
++        android:textColor="#D89AF4"
++
++        android:textSize="40dp"
++        android:style="bold"/>
++
++    <TextView
++        android:id="@+id/introduce"
++        android:layout_width="203dp"
++        android:layout_height="43dp"
++        android:layout_alignBottom="@+id/art_story"
++        android:layout_alignParentEnd="true"
++        android:layout_marginEnd="104dp"
++        android:layout_marginBottom="-57dp"
++        android:fontFamily="@font/gmarketsans"
++        android:gravity="center"
++        android:text="다양한 작품을 감상하며 창작의 즐거움을 함께하세요."
++        android:textSize="15dp" />
++
++    <ImageView
++        android:id="@+id/imageView2"
++        android:layout_width="69dp"
++        android:layout_height="71dp"
+         android:layout_alignParentEnd="true"
+-        android:layout_marginTop="32dp"
+-        android:layout_marginEnd="127dp"
+-        android:text="ART STORY"
+-        android:textSize="30sp"
+-        android:textStyle="bold" />
++        android:layout_alignParentBottom="true"
++        android:layout_marginEnd="341dp"
++        android:layout_marginBottom="101dp"
++        app:srcCompat="@drawable/email" />
+ 
+     <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="298dp"
++        android:layout_width="wrap_content"
++        android:layout_height="340dp"
+         android:layout_alignParentBottom="true"
+-        android:layout_marginBottom="349dp"
++        android:layout_marginBottom="176dp"
+         android:orientation="vertical">
+ 
+         <ImageView
+             android:id="@+id/imageView4"
+             android:layout_width="match_parent"
+-            android:layout_height="317dp"
++            android:layout_height="match_parent"
+             app:srcCompat="@drawable/__removebg_preview" />
++
+     </LinearLayout>
+ 
+     <Button
+@@ -38,14 +64,14 @@
+         android:layout_alignParentStart="true"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentBottom="true"
+-        android:layout_marginStart="72dp"
+-        android:layout_marginTop="16dp"
+-        android:layout_marginEnd="57dp"
+-        android:layout_marginBottom="210dp"
+-        android:backgroundTint="@color/colorPrimary"
+-        android:text="로그인하지 않고 진행하기"
+-        android:textColor="#FFFFFF"
+-        android:textStyle="bold"
++        android:layout_marginStart="64dp"
++        android:layout_marginTop="92dp"
++        android:layout_marginEnd="64dp"
++        android:layout_marginBottom="118dp"
++        android:backgroundTint="#FFFFFF"
++        android:fontFamily="@font/gmarketsans"
++        android:text="이메일 없이 시작하기"
++        android:textColor="#000000"
+         tools:ignore="NotSibling,UnknownId" />
+ 
+     <Button
+@@ -55,14 +81,14 @@
+         android:layout_alignParentStart="true"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentBottom="true"
+-        android:layout_marginStart="72dp"
++        android:layout_marginStart="63dp"
+         android:layout_marginTop="16dp"
+-        android:layout_marginEnd="57dp"
+-        android:layout_marginBottom="130dp"
+-        android:backgroundTint="@color/colorPrimary"
+-        android:text="이메일로 로그인하기"
+-        android:textColor="#FFFFFF"
+-        android:textStyle="bold"
++        android:layout_marginEnd="65dp"
++        android:layout_marginBottom="46dp"
++        android:backgroundTint="#FFFFFF"
++        android:fontFamily="@font/gmarketsans"
++        android:text="이메일로 시작하기"
++        android:textColor="#000000"
+         tools:ignore="NotSibling,UnknownId" />
+ 
+ </RelativeLayout>
+Index: app/src/main/res/font/font.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/font/font.xml	(date 1700271689639)
++++ app/src/main/res/font/font.xml	(date 1700271689639)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="utf-8"?>
++<font-family xmlns:android="http://schemas.android.com/apk/res/android">
++
++    <font android:fontStyle="normal"
++        android:fontWeight="400"
++        android:font="@font/gmarketsans"/>
++
++</font-family>
+\ No newline at end of file
