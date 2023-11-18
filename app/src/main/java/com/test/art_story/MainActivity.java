@@ -3,10 +3,17 @@ package com.test.art_story;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StyleSpan;
+import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -26,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView art_story = findViewById(R.id.art_story); // 수정된 ID 사용
+        CharSequence content = art_story.getText();
+        SpannableString spannableString = new SpannableString(content);
+
+        String word = "STORY";
+        int start = content.toString().indexOf(word);
+        int end = start + word.length();
+
+        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        art_story.setText(spannableString);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         /**
@@ -65,4 +87,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
+
