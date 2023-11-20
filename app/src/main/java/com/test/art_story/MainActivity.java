@@ -35,18 +35,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TextView art_story = findViewById(R.id.art_story); // 수정된 ID 사용
-        CharSequence content = art_story.getText();
-        SpannableString spannableString = new SpannableString(content);
+        // CharSequence content = art_story.getText();
+        // SpannableString spannableString = new SpannableString(content);
 
         String word = "STORY";
-        int start = content.toString().indexOf(word);
-        int end = start + word.length();
+        //int start = content.toString().indexOf(word);
+        //int end = start + word.length();
 
-        spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#FF6702")), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // spannableString.setSpan(new RelativeSizeSpan(1.3f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        art_story.setText(spannableString);
+        // art_story.setText(spannableString);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

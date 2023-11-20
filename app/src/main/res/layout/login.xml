@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <TextView
         android:id="@+id/art_story"
@@ -15,9 +16,9 @@
         android:gravity="center_horizontal|top"
         android:text="\nART\nSTORY"
         android:textColor="#D89AF4"
-
         android:textSize="40dp"
-        android:style="bold"/>
+        android:textStyle="bold"
+/>
 
     <TextView
         android:id="@+id/introduce"
@@ -30,7 +31,8 @@
         android:fontFamily="@font/gmarketsans"
         android:gravity="center"
         android:text="다양한 작품을 감상하며 창작의 즐거움을 함께하세요."
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textStyle="bold"/>
 
     <ImageView
         android:id="@+id/imageView2"
@@ -38,8 +40,9 @@
         android:layout_height="71dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="341dp"
-        android:layout_marginBottom="101dp"
+        android:layout_marginEnd="334dp"
+        android:layout_marginBottom="31dp"
+        android:elevation="20dp"
         app:srcCompat="@drawable/email" />
 
     <LinearLayout
@@ -72,6 +75,7 @@
         android:fontFamily="@font/gmarketsans"
         android:text="이메일 없이 시작하기"
         android:textColor="#000000"
+        android:textStyle="bold"
         tools:ignore="NotSibling,UnknownId" />
 
     <Button
@@ -88,6 +92,7 @@
         android:backgroundTint="#FFFFFF"
         android:fontFamily="@font/gmarketsans"
         android:text="이메일로 시작하기"
+        android:textStyle="bold"
         android:textColor="#000000"
         tools:ignore="NotSibling,UnknownId" />
 
